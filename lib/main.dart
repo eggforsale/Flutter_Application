@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,33 +15,30 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class MyHomePage extends StatefulWidget {
+  MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int likesCount = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
-          margin: const EdgeInsets.all(0.0),
-          padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
-          decoration: BoxDecoration(
-            color: Colors.deepOrange,
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(0),
-              bottomRight: Radius.circular(0),
-            ),
-          ),
-        ),
-        toolbarHeight: MediaQuery.of(context).size.height * 0.1,
+        title: Container(),
+        backgroundColor: Colors.orange,
         actions: [
           IconButton(
-            icon: const Icon(Icons.settings, color: Colors.grey, size: 50),
+            icon: Icon(Icons.settings, color: Colors.grey, size: 50),
             onPressed: () {},
           ),
         ],
@@ -57,12 +54,12 @@ class MyHomePage extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.account_circle,
                       size: 120,
                       color: Colors.black,
                     ),
-                    const SizedBox(height: 100),
+                    SizedBox(height: 100),
                     Container(
                       height: MediaQuery.of(context).size.height * 0.2,
                       width: MediaQuery.of(context).size.height * 0.2,
@@ -73,13 +70,49 @@ class MyHomePage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    Divider(
+                      height: 0,
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                    ),
+                    SizedBox(height: 0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(width: 3),
+                        Icon(
+                          Icons.favorite_border,
+                          size: 24,
+                          color: Colors.blue,
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Text('$likesCount',
+                            style: TextStyle(
+                              fontFamily: 'Times New Normal Regular',
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ))
+                      ],
+                    ),
+                    SizedBox(height: 0),
+                    Text(
+                      'Likes',
+                      style: TextStyle(
+                        fontFamily: 'Glamour Elephant',
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    )
                   ],
                 ),
-                const SizedBox(width: 0),
+                SizedBox(width: 0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const Text(
+                    Text(
                       'Johann Factora',
                       style: TextStyle(
                         fontFamily: 'Times New Normal Regular',
@@ -88,8 +121,8 @@ class MyHomePage extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    const Text(
+                    SizedBox(height: 4),
+                    Text(
                       'Computer Engineer',
                       style: TextStyle(
                         fontFamily: 'Times New Normal Regular',
@@ -98,9 +131,9 @@ class MyHomePage extends StatelessWidget {
                         color: Colors.orange,
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20),
                     Row(
-                      children: const [
+                      children: [
                         SizedBox(
                           width: 50,
                           child: Text(
@@ -142,9 +175,9 @@ class MyHomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     Row(
-                      children: const [
+                      children: [
                         SizedBox(
                           width: 40,
                           child: Text(
@@ -194,8 +227,12 @@ class MyHomePage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
+        onPressed: () {
+          setState(() {
+            likesCount += 1;
+          });
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
