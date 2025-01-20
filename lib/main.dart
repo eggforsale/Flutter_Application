@@ -29,6 +29,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int likesCount = 0;
+  int followingCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       size: 120,
                       color: Colors.black,
                     ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.edit, color: Colors.grey, size: 50),
+                      onPressed: () {},
+                    ),
                     SizedBox(height: 100),
                     Container(
                       height: MediaQuery.of(context).size.height * 0.2,
@@ -69,10 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                    ),
-                    Divider(
-                      height: 0,
-                      color: const Color.fromARGB(255, 0, 0, 0),
                     ),
                     SizedBox(height: 0),
                     Row(
@@ -162,15 +166,22 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         SizedBox(
                           width: 70,
-                          child: Text(
-                            '0',
-                            style: TextStyle(
-                              fontFamily: 'Hello',
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.pink,
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                followingCount += 1;
+                              });
+                            },
+                            child: Text(
+                              '$followingCount',
+                              style: TextStyle(
+                                fontFamily: 'Hello',
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.pink,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
                           ),
                         ),
                       ],
